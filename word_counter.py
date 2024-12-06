@@ -1,18 +1,9 @@
- 
 import sys
 import re
-from typing import List, Dict
+from typing import List
 
 def read_file(filename: str) -> str:
-    """
-    Читает содержимое файла.
-    
-    Args:
-        filename (str): Путь к файлу
-    
-    Returns:
-        str: Содержимое файла
-    """
+    """Читает содержимое файла."""
     try:
         with open(filename, 'r', encoding='utf-8') as file:
             return file.read()
@@ -21,22 +12,10 @@ def read_file(filename: str) -> str:
         sys.exit(1)
 
 def preprocess_text(text: str) -> List[str]:
-    """
-    Обрабатывает текст: удаляет пунктуацию, переводит в нижний регистр.
-    
-    Args:
-        text (str): Исходный текст
-    
-    Returns:
-        List[str]: Список слов
-    """
-    # Удаляем пунктуацию, кроме многоточия
-    text = re.sub(r'[^\w\s...]', '', text)
-    
-    # Разбиваем на слова
-    words = text.lower().split()
-    
-    return words
+    """Обрабатывает текст: удаляет пунктуацию, переводит в нижний регистр."""
+    text = text.lower()  # Переводим в нижний регистр
+    text = re.sub(r'[^\w\s]', '', text)  # Удаляем пунктуацию
+    return text.split()  # Разделяем на слова
 
 def main():
     # Проверяем аргументы командной строки
